@@ -311,21 +311,27 @@ library(lubridate)
 # 1.5.2 - Add a current date variable so we can create an out-of-time holdout
 # Assume that claims were incurred at the middle of year, and are bounded between 2000 and 2011 
 ctr_data <- ctr_data %>%
-  mutate(incurred_date = ymd(paste(Incurred_Year, "-07-01", sep="")),
-         study_start = incurred_date %m+% months(start_duration -1),
+  mutate(incurred_date = as.Date(parse_date_time(paste0(Incurred_Year, "-07-01", sep=""),'%y-%m-%d'))) 
+ 
+ctr_data <- ctr_data %>%
+    mutate(study_start = incurred_date %m+% months(start_duration -1),
          study_start_date = if_else(study_start < ymd("2000-01-01"),
                                 ymd("2000-01-01"),
                                 if_else(study_start > ymd("2011-12-31"),
                                         ymd("2011-01-01"),
                                         study_start
                                         )
-                                ),
-         current_date_raw = study_start_date %m+% months(ClaimDuration - start_duration),
+                                ))
+
+ctr_data <- ctr_data %>%								
+         mutate(current_date_raw = study_start_date %m+% months(ClaimDuration - start_duration),
          current_date = if_else(current_date_raw > ymd("2011-12-31"),
                                 ymd("2011-12-31"),
                                 current_date_raw 
                                 )                          
-         ) %>% 
+				)
+
+ctr_data <- ctr_data %>%												
   select(-study_start, - current_date_raw) # remove extra variables
 
 # Let's check out the hazard rates by current year

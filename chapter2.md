@@ -310,6 +310,9 @@ library(lubridate)
 
 # 1.5.2 - Add a current date variable so we can create an out-of-time holdout
 # Assume that claims were incurred at the middle of year, and are bounded between 2000 and 2011 
+
+# The Code has been split into separate statements to run in DataCamp
+
 ctr_data <- ctr_data %>%
   mutate(incurred_date = as.Date(parse_date_time(paste0(Incurred_Year, "-07-01", sep=""),'%y-%m-%d'))) 
  

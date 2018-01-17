@@ -4,7 +4,6 @@ description: This is an automatically generated demo course which will help you 
 university: DataCamp
 difficulty_level: 2
 time_needed: 1 hour
-from: r-base-prod:29
 datasets:
   ILTCI PM workshop CTR data.zip: Iltci pm workshop ctr data
   ctr_data.RData: Ctr data

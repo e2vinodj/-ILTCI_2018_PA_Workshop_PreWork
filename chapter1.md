@@ -578,14 +578,11 @@ Add Gender as a argument in the table() function
 
 `@sct`
 ```{r}
-#1 View a tabular summary by Coverage type
-test_function("table", index=1, not_called_msg = "You did not call table in the code after comment #1")
+test_function("table", index=1, not_called_msg = "You did not call table in the code after comment-1")
 
-#2 View a tabular summary by Coverage type and Group Indicator
-test_function("table", index=2, not_called_msg = "You did not call table in the code after comment #2")
+test_function("table", index=2, not_called_msg = "You did not call table in the code after comment-2")
 
-#3 View a tabular summary by Coverage type, Group Indicator and Gender
-test_function("table", index=3, not_called_msg = "You did not call table in the code after comment #3")
+test_function("table", index=3, not_called_msg = "You did not call table in the code after comment-3")
 
 test_error()
 success_msg("Good work!")
